@@ -1,0 +1,27 @@
+class Player:
+    def __init__(self, name, balance, machine):
+        self.name = name
+        self._balance = balance  # Encapsulation
+        self.machine = machine   # Composition
+
+    def play(self, bet):
+        if bet <= 0:
+            raise ValueError("Bet must be a positive number.")
+        if bet > self._balance:
+            print("Not enough balance.")
+            return
+
+        self._balance -= bet  # Deduct the bet from the balance
+        result = self.machine.spin()  # Get the result of the spin
+        payout = self.machine.calculate_payout(result, bet)  # Pass the bet to calculate payout
+        self._balance += payout  # Add the payout (if any) to the balance
+
+        print(f"Spin result: {result}")
+        print(f"You won: {payout} coins.")
+        print(f"New balance: {self._balance}")
+
+    def get_balance(self):
+        return self._balance
+
+    def set_balance(self, new_balance):
+        self._balance = new_balance
