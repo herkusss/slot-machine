@@ -12,10 +12,9 @@ class TestSlotMachine(unittest.TestCase):
         self.assertEqual(self.player.get_balance(), 100)
 
     def test_play_decreases_balance(self):
-        # Simulate a bet and spin
         bet_amount = 10
         initial_balance = self.player.get_balance()
-        self.player.play(bet_amount)  # assuming play() is implemented in Player
+        self.player.play(bet_amount)
         self.assertTrue(self.player.get_balance() < initial_balance)
 
     def test_play_negative_bet(self):
@@ -29,12 +28,11 @@ class TestSlotMachine(unittest.TestCase):
         self.assertEqual(loaded, 123)
 
     def test_payout_is_int(self):
-        # Adjust payout calculation to include bet amount
         result = ["🍒", "🍒", "🍒"]
-        bet_amount = 10  # Example bet
+        bet_amount = 10
         payout = self.machine.calculate_payout(result, bet_amount)
-        self.assertIsInstance(payout, int)  # Assert payout is an integer
-        self.assertEqual(payout % 1, 0)  # Ensure payout is an integer (no decimals)
+        self.assertIsInstance(payout, int)
+        self.assertEqual(payout % 1, 0)
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
