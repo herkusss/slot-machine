@@ -15,8 +15,8 @@
 ## Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/slot-machine-game.git
-   cd slot-machine-game
+   git clone https://github.com/your-username/slot-machine.git
+   cd slot-machine
    ```
 2. Install dependencies:
    ```bash
