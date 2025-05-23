@@ -10,12 +10,11 @@ class SlotMachineCustomGUI:
     def __init__(self):
         self.app = ctk.CTk()
         self.app.geometry("600x400+500+250")
-        self.app.overrideredirect(True)  # Remove default title bar
+        self.app.overrideredirect(True)
         self.player = None
         self.reel_labels = []
         self.result_label = None
 
-        # Load slot machine icon for the top bar
         slot_icon_path = os.path.join("assets", "slot_icon.png")
         img = Image.open(slot_icon_path)
         img = img.resize((32, 32))
@@ -23,12 +22,10 @@ class SlotMachineCustomGUI:
 
         self.symbol_images = self.load_symbol_images()
 
-        # Create custom top bar
         self.top_bar = ctk.CTkFrame(self.app, height=50, corner_radius=0)
         self.top_bar.pack(fill="x", side="top")
         self.top_bar.pack_propagate(False)
 
-        # Add icon and title label to top bar
         icon_label = ctk.CTkLabel(self.top_bar, image=self.slot_icon, text="")
         icon_label.pack(side="left", padx=(10, 0))
         title_label = ctk.CTkLabel(
@@ -38,7 +35,6 @@ class SlotMachineCustomGUI:
         )
         title_label.pack(side="left", padx=(5, 0))
 
-        # Add close button to top bar
         close_button = ctk.CTkButton(
             self.top_bar,
             text="✖",
@@ -51,11 +47,9 @@ class SlotMachineCustomGUI:
         )
         close_button.pack(side="right", padx=5)
 
-        # Add event bindings for dragging only on the top bar
         self.top_bar.bind("<ButtonPress-1>", self.start_move)
         self.top_bar.bind("<B1-Motion>", self.do_move)
 
-        # Initialize the name screen
         self.init_name_screen()
 
     def start_move(self, event):
@@ -73,7 +67,7 @@ class SlotMachineCustomGUI:
         for symbol in symbols:
             path = os.path.join("assets", f"{symbol}.png")
             img = Image.open(path)
-            img = img.resize((96, 96))  # Resize for a larger window
+            img = img.resize((96, 96))
             images[symbol] = ctk.CTkImage(light_image=img, dark_image=img, size=(96, 96))
         return images
 
@@ -181,7 +175,6 @@ class SlotMachineCustomGUI:
         for i, symbol in enumerate(result):
             self.reel_labels[i].configure(image=self.symbol_images[symbol])
 
-        # Pass bet_amount to calculate_payout
         payout = self.player.machine.calculate_payout(result, bet)
         
         self.player._balance = self.player.get_balance() - bet + payout
