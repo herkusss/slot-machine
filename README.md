@@ -86,11 +86,3 @@ Run tests with:
 ```bash
 python -m unittest test_slot_machine.py -v
 ```
-
-## Future Improvements
-- Add new slot machine types with unique symbols and payout tables.
-- Implement a leaderboard to track high scores.
-- Enhance testing to cover more edge cases (e.g., payout calculations).
-- Add sound effects or animations to the GUI.
-- Integrate a database for scalable player data storage.
-
