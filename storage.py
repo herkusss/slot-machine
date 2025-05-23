@@ -15,14 +15,14 @@ def load_balance(player_name, filename="balance.json"):
     try:
         with open(filename, "r") as f:
             data = json.load(f)
-        return data.get(player_name, 500)  # Default balance: 500
+        return data.get(player_name, 500)
     except FileNotFoundError:
-        return 500  # Default balance: 500
+        return 500
 
 def get_all_players(filename="balance.json"):
     try:
         with open(filename, "r") as f:
             data = json.load(f)
-        return list(data.keys())  # Returns a list of player names
+        return list(data.keys())
     except FileNotFoundError:
         return []
